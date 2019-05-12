@@ -1,26 +1,24 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {connect} from "react-redux";
+import {setItem} from './actions/App/AppActions'
+ import Button from './components/Button';
+function App(props) {
+    const {onAddX} = props;
+    return (
+        <div className="App">
+            <Button/>
+        </div>
+    );
 }
 
-export default App;
+const mapProps = (state) => ({
+    rootReducer: state
+})
+
+const dispatchToProps = (dispatch) => ({
+    onAddX: payload => dispatch(setItem(payload))
+})
+
+export default connect(mapProps, dispatchToProps)(App);
